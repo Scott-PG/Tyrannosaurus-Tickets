@@ -20,8 +20,14 @@ const Event = new Schema({
     required: true 
   },
   ticket_IDs: [{
-    type: Schema.Types.ObjectId,
-    ref: 'tickets'
+    ticket_ID: {
+      type: Schema.Types.ObjectId,
+      ref: 'tickets'
+    },
+    user_ID: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    }
   }]
 },
 {

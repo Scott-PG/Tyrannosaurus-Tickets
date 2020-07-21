@@ -7,10 +7,10 @@ const Ticket = new Schema({
     required: true,
     ref: 'users'
   },
-  ticket_ID: {
+  event_ID: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'tickets'
+    ref: 'events'
   },
   name_on_ticket: {
     type: String,
@@ -23,7 +23,12 @@ const Ticket = new Schema({
   qr_code_encrypted: {
     type: String,
     required: true 
-  }
+  },
+  ticket_details: [
+    {
+      type: String
+    }
+  ]
 },
 {
   timestamps: true

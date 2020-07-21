@@ -2,7 +2,7 @@
 
 module.exports = (req, res, next) => {
   const jwt = require("jsonwebtoken")
-  require("dotenv").config()
+  require("../controllers/node_modules/dotenv").config()
   
   const TOKEN_KEY = process.env.TOKEN_KEY 
   try {

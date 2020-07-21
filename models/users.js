@@ -12,7 +12,11 @@ const User = new Schema({
     required: true,
     unique: true 
   },
-  password_digest: { type: String, required: true }
+  password_digest: { type: String, required: true },
+  ticket_IDs: [{
+    type: Schema.Types.ObjectId,
+    ref: 'tickets'
+  }]
 },
 {
   timestamps: true

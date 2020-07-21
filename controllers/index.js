@@ -16,7 +16,20 @@ const SALT_ROUNDS = 11
 // token key for jwt 
 const TOKEN_KEY = process.env.TOKEN_KEY 
 
-// write functions here, all take args req and res from router
+// write all functions that are not for router here
+
+// ===============================
+// 
+//  Functions NOT For Router
+// 
+// ===============================
+
+const encryptTicket = async (name_on_ticket, userID, eventID) => {
+  
+}
+
+
+// write router functions here, all take args req and res from router
 
 // ===============================
 // 

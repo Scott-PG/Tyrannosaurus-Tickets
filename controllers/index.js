@@ -86,7 +86,7 @@ const userOfRequest = (req) => {
   try {
     const token = req.headers.authorization.split(" ")[1]
     const legit = jwt.verify(token, TOKEN_KEY)
-    console.log(legit)
+    
     if (legit) {
       return legit.id 
     }
@@ -182,7 +182,6 @@ const getEvents = async (req, res) => {
 
     // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
     // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
-    console.log(events)
     events.forEach(event => {
       event.ticket_IDs = null
     })
@@ -202,6 +201,14 @@ const getUserEvents = async (req, res) => {
       // query events where user_ID is in the array ticket_IDs.user_ID 
       const events = await Event.find({
         'ticket_IDs.user_ID': user_ID 
+      })
+
+      // for each event, filter out all tickets unless they match the user_ID (because the others do not belong to this user)
+      events.forEach(event => {
+        // ticket_IDs is an array holding objects with 2 key/value pairs: ticket_ID and user_ID
+        event.ticket_IDs = event.ticket_IDs.filter(ticket_obj => {
+          return ticket_obj.user_ID.toString() === user_ID.toString()
+        }) 
       })
 
       return res.json(events)

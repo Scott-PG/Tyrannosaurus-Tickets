@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { verifyUser } from "../../services/user";
+import { verifyUser, signOut } from "../../services/user";
 
 import Nav from "./Nav";
 import Main from "../Main";
@@ -19,7 +19,7 @@ const Layout = () => {
 
   return (
     <>
-      <Nav user={user} />
+      <Nav user={user} handleLogout={signOut} />
       <Main user={user} />
       <Footer />
     </>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
@@ -11,7 +12,7 @@ const Main = ({ user: propUser }) => {
   return (
     <main>
       <Switch>
-        {/* <Route exact path="/" render={() => <Home user={user} />} /> */}
+        <Route exact path="/" render={() => <Home />} />
         <Route
           exact
           path="/signin"

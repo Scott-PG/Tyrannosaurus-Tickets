@@ -5,7 +5,6 @@ const User = require("../models/users")
 const Ticket = require("../models/tickets")
 const Event = require("../models/events")
 
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -77,6 +76,21 @@ const linkTicket = async (ticket_ID, user_ID, event_ID) => {
     event.ticket_IDs.push({ ticket_ID, user_ID })
     await event.save()
 
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// given a req, determine the user_ID from the token. this lets us know which user based on their token has tried to access a route 
+const userOfRequest = (req) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1]
+    const legit = jwt.verify(token, TOKEN_KEY)
+    console.log(legit)
+    if (legit) {
+      return legit.id 
+    }
+    return false 
   } catch (error) {
     console.log(error)
   }
@@ -179,6 +193,50 @@ const getEvents = async (req, res) => {
     return res.status(500).json({ error: error.message })
   }
 }
+
+// get all events but respond without ticket info 
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.find()
+
+    // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
+    // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
+    console.log(events)
+    events.forEach(event => {
+      event.ticket_IDs = null
+    })
+
+    return res.json(events)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+// get all events but respond without ticket info 
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.find()
+
+    // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
+    // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
+    console.log(events)
+    events.forEach(event => {
+      event.ticket_IDs = null
+    })
+
+    return res.json(events)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+// ===============================
+// 
+//  EXPORT FUNCTIONS 
+// 
+// ===============================
 
 // export functions to be used in routes 
 module.exports = {

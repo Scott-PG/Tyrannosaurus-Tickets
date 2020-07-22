@@ -22,8 +22,10 @@ router.post("/signup", (req, res) => controllers.signUp(req, res))
 router.get('/verifyuser', (req, res) => controllers.verifyUser(req, res))
 
 // ==========
-//  QR Codes
+//  Events
 // ==========
 
+// all events, but without ticket information 
+router.get("/events", (req, res) => controllers.getEvents(req, res))
 
 module.exports = router

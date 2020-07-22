@@ -3,7 +3,7 @@ import "./Layout.css";
 import { useHistory, Link } from "react-router-dom";
 import logo from "../../assets/t-rex-logo.png";
 
-const Header = ({ user, handleLogout }) => {
+const Nav = ({ user, handleLogout }) => {
   const history = useHistory();
 
   const authenticatedOptions = (
@@ -25,10 +25,10 @@ const Header = ({ user, handleLogout }) => {
 
   const unauthenticatedOptions = (
     <>
-      <Link className="link" to="/register">
+      <Link className="link" to="/signup">
         Sign Up
       </Link>
-      <Link className="link" to="/login">
+      <Link className="link" to="/signin">
         Sign In
       </Link>
     </>
@@ -41,4 +41,4 @@ const Header = ({ user, handleLogout }) => {
     </header>
   );
 };
-export default Header;
+export default Nav;

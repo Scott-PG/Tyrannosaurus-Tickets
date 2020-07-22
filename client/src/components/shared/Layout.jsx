@@ -17,9 +17,14 @@ const Layout = () => {
     checkUser();
   }, [user]);
 
+  const handleLogout = () => {
+    signOut();
+    setUser(false);
+  };
+
   return (
     <>
-      <Nav user={user} handleLogout={signOut} />
+      <Nav user={user} handleLogout={handleLogout} />
       <Main user={user} />
       <Footer />
     </>

@@ -93,6 +93,7 @@ const userOfRequest = (req) => {
     return false 
   } catch (error) {
     console.log(error)
+    return false 
   }
 }
 
@@ -226,6 +227,31 @@ const getUserEvents = async (req, res) => {
   }
 }
 
+// get all events that have tickets of the user whose token is detected 
+const getUserEvent = async (req, res) => {
+  try {
+    // get user id from token 
+    const user_ID = userOfRequest(req) 
+
+    // get event id from req.params 
+    const event_ID = req.params.id 
+
+    const event = await Event.findById(event_ID)
+
+    //filter out all tickets unless they match the user_ID (because the others do not belong to this user)
+    
+    // ticket_IDs is an array holding objects with 2 key/value pairs: ticket_ID and user_ID
+    event.ticket_IDs = event.ticket_IDs.filter(ticket_obj => {
+      return ticket_obj.user_ID.toString() === user_ID.toString()
+    })
+
+    return res.json(event)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 // ===============================
 // 
 //  EXPORT FUNCTIONS 
@@ -236,5 +262,5 @@ const getUserEvents = async (req, res) => {
 module.exports = {
   encryptTicketQR, decryptTicketQR, linkTicket,
   signIn, signUp, verifyUser,
-  getEvents, getUserEvents 
+  getEvents, getUserEvents, getUserEvent 
 }

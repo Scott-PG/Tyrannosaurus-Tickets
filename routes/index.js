@@ -30,6 +30,7 @@ router.get("/events", (req, res) => controllers.getEvents(req, res))
 
 router.get("/userevents", (req, res) => controllers.getUserEvents(req, res))
 
+router.get("/userevents/:id", (req, res) => controllers.getUserEvent(req, res))
 
 // ==========
 //  Export 

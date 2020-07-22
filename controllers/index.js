@@ -199,16 +199,21 @@ const getUserEvents = async (req, res) => {
     const user_ID = userOfRequest(req) 
     if (user_ID) {
       // query events where user_ID is in the array ticket_IDs.user_ID 
-      const events = await Event.find({
+      const foundEvents = await Event.find({
         'ticket_IDs.user_ID': user_ID 
       })
 
       // for each event, filter out all tickets unless they match the user_ID (because the others do not belong to this user)
-      events.forEach(event => {
+      const events = foundEvents.map(event => {
         // ticket_IDs is an array holding objects with 2 key/value pairs: ticket_ID and user_ID
-        event.ticket_IDs = event.ticket_IDs.filter(ticket_obj => {
+        user_ticket_count = event.ticket_IDs.filter(ticket_obj => {
           return ticket_obj.user_ID.toString() === user_ID.toString()
-        }) 
+        }).length 
+
+        // don't include array of tickets in this response, they will be included in route for requesting only one event 
+        event.ticket_IDs = null 
+
+        return {event_data: event, user_ticket_count}
       })
 
       return res.json(events)

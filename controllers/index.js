@@ -236,7 +236,7 @@ const getUserEvent = async (req, res) => {
     // get event id from req.params 
     const event_ID = req.params.id 
 
-    const event = await Event.findById(event_ID)
+    const event = await Event.findById(event_ID).populate('ticket_IDs.ticket_ID')
 
     //filter out all tickets unless they match the user_ID (because the others do not belong to this user)
     

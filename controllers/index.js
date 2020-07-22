@@ -42,8 +42,8 @@ const encryptTicketQR = async (user_ID, event_ID, name_on_ticket) => {
     encrypted_string = jwt.sign(payload, QR_TOKEN_KEY)
 
     return { encrypted_string, time_generated }
-  } catch (er) {
-    console.log(er)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -53,8 +53,8 @@ const decryptTicketQR = async (qr_string) => {
     const decrypted_object = jwt.verify(qr_string, QR_TOKEN_KEY)
 
     return decrypted_object
-  } catch (er) {
-    console.log(er)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -76,8 +76,24 @@ const linkTicket = async (ticket_ID, user_ID, event_ID) => {
     event.ticket_IDs.push({ ticket_ID, user_ID })
     await event.save()
 
-  } catch (er) {
-    console.log(er)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// given a req, determine the user_ID from the token. this lets us know which user based on their token has tried to access a route 
+const userOfRequest = (req) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1]
+    const legit = jwt.verify(token, TOKEN_KEY)
+    
+    if (legit) {
+      return legit.id 
+    }
+    return false 
+  } catch (error) {
+    console.log(error)
+    return false 
   }
 }
 
@@ -127,8 +143,7 @@ const signIn = async (req, res) => {
 }
 
 //sign-up
-async function signUp(req, res) {
-  console.log('in sign up')
+const signUp = async (req, res) => {
   try {
     const { username, password, user_real_name } = req.body
 
@@ -151,20 +166,101 @@ async function signUp(req, res) {
     return res.status(201).json({ user, token })
 
   } catch (error) {
-    console.log("Made it to signUp controller, but there was an error")
-    return res.status(400).json({ error: error.message })
+    return res.status(500).json({ error: error.message })
   }
 }
 
 // ===============================
 // 
-//  QR Codes
+//  Events 
 // 
 // ===============================
 
+// get all events but respond without ticket info 
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.find()
+
+    // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
+    // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
+    events.forEach(event => {
+      event.ticket_IDs = null
+    })
+
+    return res.json(events)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+// get all events that have tickets of the user whose token is detected 
+const getUserEvents = async (req, res) => {
+  try {
+    const user_ID = userOfRequest(req) 
+    if (user_ID) {
+      // query events where user_ID is in the array ticket_IDs.user_ID 
+      const foundEvents = await Event.find({
+        'ticket_IDs.user_ID': user_ID 
+      })
+
+      // for each event, filter out all tickets unless they match the user_ID (because the others do not belong to this user)
+      const events = foundEvents.map(event => {
+        // ticket_IDs is an array holding objects with 2 key/value pairs: ticket_ID and user_ID
+        user_ticket_count = event.ticket_IDs.filter(ticket_obj => {
+          return ticket_obj.user_ID.toString() === user_ID.toString()
+        }).length 
+
+        // don't include array of tickets in this response, they will be included in route for requesting only one event 
+        event.ticket_IDs = null 
+
+        return {event_data: event, user_ticket_count}
+      })
+
+      return res.json(events)
+    } else {
+      res.status(400).json({error: "No valid user token detected."})
+    }
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+// get all events that have tickets of the user whose token is detected 
+const getUserEvent = async (req, res) => {
+  try {
+    // get user id from token 
+    const user_ID = userOfRequest(req) 
+
+    // get event id from req.params 
+    const event_ID = req.params.id 
+
+    const event = await Event.findById(event_ID).populate('ticket_IDs.ticket_ID')
+
+    //filter out all tickets unless they match the user_ID (because the others do not belong to this user)
+    
+    // ticket_IDs is an array holding objects with 2 key/value pairs: ticket_ID and user_ID
+    event.ticket_IDs = event.ticket_IDs.filter(ticket_obj => {
+      return ticket_obj.user_ID.toString() === user_ID.toString()
+    })
+
+    return res.json(event)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+// ===============================
+// 
+//  EXPORT FUNCTIONS 
+// 
+// ===============================
 
 // export functions to be used in routes 
 module.exports = {
   encryptTicketQR, decryptTicketQR, linkTicket,
-  signIn, signUp, verifyUser
+  signIn, signUp, verifyUser,
+  getEvents, getUserEvents, getUserEvent 
 }

@@ -7,25 +7,26 @@ import Main from "../Main";
 import Footer from "./Footer";
 
 const Layout = () => {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(verifyUser());
 
   useEffect(() => {
-    const checkUser = async () => {
+    const verification = async () => {
       const resp = await verifyUser();
       setUser(resp);
     };
-    checkUser();
-  }, [user]);
+    verification();
+  }, []);
 
   const handleLogout = () => {
-    signOut();
     setUser(false);
+    signOut();
   };
 
   return (
     <>
       <Nav user={user} handleLogout={handleLogout} />
-      <Main user={user} />
+      <div>{user ? `Welcome, ${user.username}` : ""}</div>
+      <Main user={user} setUser={setUser} />
       <Footer />
     </>
   );

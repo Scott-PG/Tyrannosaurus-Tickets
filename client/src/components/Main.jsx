@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-const Main = ({ user: propUser }) => {
-  const [user, setUser] = useState(propUser);
-
-  useEffect(() => setUser(propUser), [propUser]);
-
+const Main = ({ user, setUser }) => {
   return (
     <main>
       <Switch>
@@ -16,12 +12,16 @@ const Main = ({ user: propUser }) => {
         <Route
           exact
           path="/signin"
-          render={() => (user ? <Redirect to="/" /> : <SignIn />)}
+          render={() =>
+            user ? <Redirect to="/" /> : <SignIn setUser={setUser} />
+          }
         />
         <Route
           exact
           path="/signup"
-          render={() => (user ? <Redirect to="/" /> : <SignUp />)}
+          render={() =>
+            user ? <Redirect to="/" /> : <SignUp setUser={setUser} />
+          }
         />
         {/* <Route exact path="/events/:id" render={() => <Event user={user} />} />
         <Route exact path="/events" render={() => <Events user={user} />} /> */}

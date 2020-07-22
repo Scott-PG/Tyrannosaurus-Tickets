@@ -28,20 +28,19 @@ const QR_TOKEN_KEY = process.env.QR_TOKEN_KEY
 // ===============================
 
 // given the name on the ticket, userID and eventID, generate an encrypted string and return it 
-const encryptTicketQR = async (user_ID, event_ID, name_on_ticket) => {
+const encryptTicketQR = async (ticket_ID, name_on_ticket) => {
   try {
     const time_generated = new Date().toUTCString()
 
     const payload = {
-      user_ID,
-      event_ID,
+      ticket_ID,
       name_on_ticket,
       time_generated
     }
 
     encrypted_string = jwt.sign(payload, QR_TOKEN_KEY)
 
-    return { encrypted_string, time_generated }
+    return encrypted_string
   } catch (error) {
     console.log(error)
   }
@@ -61,14 +60,14 @@ const decryptTicketQR = async (qr_string) => {
 // given the ticket_ID and its corresponding userID and eventID, link this ticket in the ticket_IDs field of the corresponding user and event 
 const linkTicket = async (ticket_ID, user_ID, event_ID) => {
   try {
-    console.log(user_ID)
-    console.log(event_ID)
+    // console.log(user_ID)
+    // console.log(event_ID)
     
     const user = await User.findById(user_ID)
     const event = await Event.findById(event_ID)
 
-    console.log(user)
-    console.log(event)
+    // console.log(user)
+    // console.log(event)
 
     user.ticket_IDs.push({ ticket_ID, event_ID })
     await user.save()
@@ -252,6 +251,43 @@ const getUserEvent = async (req, res) => {
   }
 }
 
+
+// ===============================
+// 
+//  Tickets and QR codes
+// 
+// ===============================
+
+const decryptTicket = async (req, res) => {
+  try {
+    // receive qrCode in req.body 
+    const { encrypted_qr_code } = req.body 
+
+    const qrInfo = await decryptTicketQR(encrypted_qr_code)
+
+    const ticket = await Ticket.findById(qrInfo.ticket_ID).populate('event_ID')
+
+    if (encrypted_qr_code === ticket.qr_code_encrypted) {
+      // change the ticket_scanned from false to true 
+      await Ticket.findByIdAndUpdate(qrInfo.ticket_ID, { ticket_scanned: true }, (error, ticket) => {
+        if (error) {
+          return res.status(500).json({ error: error.message })
+        }
+        if (!ticket) {
+          return res.status(404).json({ error: "Ticket not found!" })
+        }
+      })
+
+      return res.json(ticket)
+    } else {
+      return res.status(400).json({ error: "Ticket QR code does not match database record." })
+    }
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 // ===============================
 // 
 //  EXPORT FUNCTIONS 
@@ -262,5 +298,6 @@ const getUserEvent = async (req, res) => {
 module.exports = {
   encryptTicketQR, decryptTicketQR, linkTicket,
   signIn, signUp, verifyUser,
-  getEvents, getUserEvents, getUserEvent 
+  getEvents, getUserEvents, getUserEvent,
+  decryptTicket 
 }

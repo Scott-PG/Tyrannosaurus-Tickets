@@ -55,29 +55,36 @@ const main = async () => {
 
     const name_on_ticket = 'Bob Bobberson'
 
-    const qrCode = await encryptTicketQR(userID, eventID, name_on_ticket)
-
-    console.log(qrCode)
-
     // insert ticket into database 
-    const tickets = [{
+    const makeTicket1 = {
       user_ID: userID,
       event_ID: eventID,
       name_on_ticket,
-      time_last_generated: qrCode.time_generated,
-      qr_code_encrypted: qrCode.encrypted_string
-    }]
+      ticket_scanned: false 
+    }
 
-    const decryption = await decryptTicketQR(qrCode.encrypted_string)
+    const tickets = await Ticket.insertMany(makeTicket1)
 
+    const ticket1 = tickets[0]
+
+    // make encrypted code from ticket and name 
+    const qrCode = await encryptTicketQR(ticket1._id, name_on_ticket)
+    
+    ticket1.qr_code_encrypted = qrCode 
+    ticket1.time_last_generated = qrCode.time_generated
+
+    ticket1.save()
+
+    // check decryption
+    const decryption = await decryptTicketQR(qrCode)
+
+    console.log('- decryption -')
     console.log(decryption)
 
-    await Ticket.insertMany(tickets)
+    
     console.log('Seeded initial tickets')
 
-    // link ticket to user and event via IDs
-    const ticket1 = await Ticket.findOne({ qr_code_encrypted: qrCode.encrypted_string })
-    
+    // link ticket to user and event via IDs    
     const ticketID = ticket1._id 
 
     await linkTicket(ticketID, userID, eventID)

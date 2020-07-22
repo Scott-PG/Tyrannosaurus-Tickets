@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { verifyUser } from "../../services/user";
 
-import Header from "./Header";
+import Nav from "./Nav";
 import Main from "../Main";
 import Footer from "./Footer";
 
@@ -19,7 +19,7 @@ const Layout = () => {
 
   return (
     <>
-      <Header user={user} />
+      <Nav user={user} />
       <Main user={user} />
       <Footer />
     </>

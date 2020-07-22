@@ -2,7 +2,7 @@ import api from "./apiConfig";
 
 export const signUp = async (credentials) => {
   try {
-    const resp = await api.post("/sign-up", credentials);
+    const resp = await api.post("/signup", credentials);
     localStorage.setItem("token", resp.data.token);
     return resp.data;
   } catch (error) {
@@ -12,7 +12,7 @@ export const signUp = async (credentials) => {
 
 export const signIn = async (credentials) => {
   try {
-    const resp = await api.post("/sign-in", credentials);
+    const resp = await api.post("/signin", credentials);
     localStorage.setItem("token", resp.data.token);
     return resp.data;
   } catch (error) {
@@ -32,7 +32,7 @@ export const signOut = async (user) => {
 export const verifyUser = async () => {
   const token = localStorage.getItem("token");
   if (token) {
-    const res = await api.get("/verify");
+    const res = await api.get("/verifyuser");
     return res.data;
   }
   return false;

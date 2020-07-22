@@ -20,7 +20,7 @@ const Layout = () => {
   return (
     <>
       <Header user={user} />
-      <Main />
+      <Main user={user} />
       <Footer />
     </>
   );

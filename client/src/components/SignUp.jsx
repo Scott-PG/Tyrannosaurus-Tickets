@@ -7,7 +7,7 @@ class SignUp extends Component {
 
     this.state = {
       username: "",
-      userRealName: "",
+      user_real_name: "",
       password: "",
       passwordConfirmation: "",
       userPermissions: "user",
@@ -26,12 +26,11 @@ class SignUp extends Component {
   onSignUp = (event) => {
     event.preventDefault();
 
-    const { history, setUser } = this.props;
+    const { setUser } = this.props;
 
     signUp(this.state)
       .then(() => signIn(this.state))
       .then((res) => setUser(res.user))
-      .then(() => history.push("/"))
       .catch((error) => {
         console.error(error);
         this.setState({
@@ -64,7 +63,7 @@ class SignUp extends Component {
   render() {
     const {
       username,
-      userRealName,
+      user_real_name,
       password,
       passwordConfirmation,
     } = this.state;
@@ -86,8 +85,8 @@ class SignUp extends Component {
             <input
               required
               type="text"
-              name="userRealName"
-              value={userRealName}
+              name="user_real_name"
+              value={user_real_name}
               placeholder="Given Name"
               onChange={this.handleChange}
             />

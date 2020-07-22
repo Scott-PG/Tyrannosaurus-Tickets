@@ -24,13 +24,14 @@ class SignIn extends Component {
   onSignIn = (event) => {
     event.preventDefault();
 
-    const { history, setUser } = this.props;
+    const { setUser } = this.props;
 
     signIn(this.state)
       .then((res) => {
+        console.log(res.user);
         setUser(res.user);
       })
-      .then(() => history.push("/"))
+      // .then(() => history.push("/"))
       .catch((error) => {
         console.error(error);
         this.setState({

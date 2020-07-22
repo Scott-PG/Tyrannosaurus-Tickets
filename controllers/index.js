@@ -194,38 +194,20 @@ const getEvents = async (req, res) => {
   }
 }
 
-// get all events but respond without ticket info 
-const getEvents = async (req, res) => {
+// get all events that have tickets of the user whose token is detected 
+const getUserEvents = async (req, res) => {
   try {
-    const events = await Event.find()
+    const user_ID = userOfRequest(req) 
+    if (user_ID) {
+      // query events where user_ID is in the array ticket_IDs.user_ID 
+      const events = await Event.find({
+        'ticket_IDs.user_ID': user_ID 
+      })
 
-    // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
-    // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
-    console.log(events)
-    events.forEach(event => {
-      event.ticket_IDs = null
-    })
-
-    return res.json(events)
-
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
-  }
-}
-
-// get all events but respond without ticket info 
-const getEvents = async (req, res) => {
-  try {
-    const events = await Event.find()
-
-    // we are going to remove the key/value pair of ticket_IDs before sending it in the response 
-    // delete <object>.<keyname> doesn't seem to work so the property is set to null for now (normally would be an array)
-    console.log(events)
-    events.forEach(event => {
-      event.ticket_IDs = null
-    })
-
-    return res.json(events)
+      return res.json(events)
+    } else {
+      res.status(400).json({error: "No valid user token detected."})
+    }
 
   } catch (error) {
     return res.status(500).json({ error: error.message })
@@ -242,5 +224,5 @@ const getEvents = async (req, res) => {
 module.exports = {
   encryptTicketQR, decryptTicketQR, linkTicket,
   signIn, signUp, verifyUser,
-  getEvents 
+  getEvents, getUserEvents 
 }

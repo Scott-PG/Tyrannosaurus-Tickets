@@ -28,4 +28,10 @@ router.get('/verifyuser', (req, res) => controllers.verifyUser(req, res))
 // all events, but without ticket information 
 router.get("/events", (req, res) => controllers.getEvents(req, res))
 
+router.get("/userevents", (req, res) => controllers.getUserEvents(req, res))
+
+
+// ==========
+//  Export 
+// ==========
 module.exports = router

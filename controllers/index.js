@@ -309,6 +309,11 @@ const generateTicket = async (req, res) => {
     // get name and event_ID from req.body 
     const {name_on_ticket, event_ID} = req.body 
 
+    // show info about request in logs 
+    console.log('--Request Body Info--')
+    console.log(name_on_ticket)
+    console.log(event_ID)
+
     // check if name_on_ticket is a valid string 
     if (typeof name_on_ticket !== "string" || name_on_ticket.length < 1) {
       name_on_ticket = userInfo.user_real_name 

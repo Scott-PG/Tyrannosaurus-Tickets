@@ -1,10 +1,10 @@
 import React from "react";
 import QRCode from "qrcode.react";
-import test from "../assets/purple-t-rex.png";
+import purpletrex from "../assets/purple-t-rex.png";
 
-const Home = () => {
+const Home = ({ user }) => {
   const logoSettings = {
-    src: test,
+    src: purpletrex,
     height: 64,
     width: 64,
   };
@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <div>Home Page Placeholder</div>
       <QRCode
-        value="https://www.example.com"
+        value={"https://www.example.com"}
         size={256}
         level="H"
         includeMargin={true}

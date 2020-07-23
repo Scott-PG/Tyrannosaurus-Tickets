@@ -22,8 +22,8 @@ export const userEvents = async () => {
   }
 };
 
-// get event of id, and if user verified, with this user's ticket(s) info 
-export const event = async (eventID) => {
+// get event of id, and if user verified, with this user's ticket(s) info
+export const getEvent = async (eventID) => {
   try {
     const resp = await api.get(`/userevents/${eventID}`);
 

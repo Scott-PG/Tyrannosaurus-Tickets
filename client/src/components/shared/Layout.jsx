@@ -25,7 +25,7 @@ const Layout = () => {
   return (
     <>
       <Nav user={user} handleLogout={handleLogout} />
-      <div>{user ? `Welcome, ${user.username}` : ""}</div>
+      <div>{user ? `Welcome, ${user.user_real_name}` : ""}</div>
       <Main user={user} setUser={setUser} />
       <Footer />
     </>

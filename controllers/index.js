@@ -315,7 +315,7 @@ const generateTicket = async (req, res) => {
     console.log(event_ID)
 
     // check if name_on_ticket is a valid string 
-    if (typeof name_on_ticket !== "string" || name_on_ticket.length < 1) {
+    if (!name_on_ticket || typeof name_on_ticket !== "string" || name_on_ticket.length < 1) {
       name_on_ticket = userInfo.user_real_name 
     }
 

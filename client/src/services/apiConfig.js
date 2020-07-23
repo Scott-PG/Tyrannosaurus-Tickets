@@ -9,7 +9,7 @@ const getToken = () => {
 let apiUrl;
 
 const apiUrls = {
-  production: "",
+  production: "https://tyrannosaurus-tickets.herokuapp.com/api",
   development: "http://localhost:3000/api",
 };
 

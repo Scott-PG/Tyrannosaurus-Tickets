@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Scott-PG/Tyrannosaurus-Tickets#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -28,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "react-qr-reader": "^2.2.1"
   }
 }

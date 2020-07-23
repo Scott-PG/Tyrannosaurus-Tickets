@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const controllers = require('../controllers')
-const restrict = require("../helpers")
+// const restrict = require("../helpers")
 
 // root route 
 router.get('/', (req, res) => {
@@ -31,6 +31,12 @@ router.get("/events", (req, res) => controllers.getEvents(req, res))
 router.get("/userevents", (req, res) => controllers.getUserEvents(req, res))
 
 router.get("/userevents/:id", (req, res) => controllers.getUserEvent(req, res))
+
+// ==========
+//  Tickets and QR codes
+// ==========
+
+router.post("/decryptticket", (req, res) => controllers.decryptTicket(req, res))
 
 // ==========
 //  Export 

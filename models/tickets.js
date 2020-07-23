@@ -22,13 +22,17 @@ const Ticket = new Schema({
   },
   qr_code_encrypted: {
     type: String,
-    required: true 
+    required: false 
   },
   ticket_details: [
     {
       type: String
     }
-  ]
+  ],
+  ticket_scanned: {
+    type: Boolean,
+    required: true
+  }
 },
 {
   timestamps: true

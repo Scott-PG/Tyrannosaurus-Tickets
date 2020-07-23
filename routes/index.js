@@ -38,6 +38,8 @@ router.get("/userevents/:id", (req, res) => controllers.getUserEvent(req, res))
 
 router.post("/decryptticket", (req, res) => controllers.decryptTicket(req, res))
 
+router.post("/generateticket", (req, res) => controllers.generateTicket(req, res))
+
 // ==========
 //  Export 
 // ==========

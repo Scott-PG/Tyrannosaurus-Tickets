@@ -19,6 +19,10 @@ const SALT_ROUNDS = 11
 const TOKEN_KEY = process.env.TOKEN_KEY 
 const QR_TOKEN_KEY = process.env.QR_TOKEN_KEY 
 
+// for randomly generating a letter (not entire alphabet)
+// for demo purposes only (would be handled in a different file in real implementation)
+const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+
 // write all functions that are not for router here
 
 // ===============================
@@ -288,6 +292,52 @@ const decryptTicket = async (req, res) => {
   }
 }
 
+// generate a ticket given a name_on_ticket, user_ID and event_ID 
+const generateTicket = async (req, res) => {
+  try {
+    // get user id from token 
+    const user_ID = userOfRequest(req) 
+
+    if (!user_ID) {
+      return res.status(403).json({ error: "No valid JSON Web Token. Please log in first." })
+    }
+
+    // get name and event_ID from req.body 
+    const {name_on_ticket, event_ID} = req.body 
+
+    // create random seating details for demo purposes
+    const ticket_details = []
+    ticket_details.push(`Seat: ${Math.ceil(Math.random() * 50)}-${letters[Math.round(Math.random()*(letters.length-1))]}`)
+    ticket_details.push(`Section: ${Math.ceil(Math.random()*10)}`)
+
+    // create ticket
+    const ticket = await new Ticket({
+      user_ID,
+      event_ID,
+      name_on_ticket,
+      ticket_scanned: false,
+      ticket_details 
+    })
+
+    // generate QR code and add it to ticket 
+    const qrCode = await encryptTicketQR(ticket._id, name_on_ticket)
+
+    ticket.qr_code_encrypted = qrCode 
+
+    // save the ticket to db
+    await ticket.save()
+
+    // link this ticket to user and event 
+    await linkTicket(ticket._id, user_ID, event_ID)
+
+    // respond with ticket to confirm 
+    return res.json(ticket)
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 // ===============================
 // 
 //  EXPORT FUNCTIONS 
@@ -299,5 +349,5 @@ module.exports = {
   encryptTicketQR, decryptTicketQR, linkTicket,
   signIn, signUp, verifyUser,
   getEvents, getUserEvents, getUserEvent,
-  decryptTicket 
+  decryptTicket, generateTicket 
 }

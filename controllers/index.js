@@ -307,7 +307,7 @@ const generateTicket = async (req, res) => {
     }
 
     // get name and event_ID from req.body 
-    linkTicket {name_on_ticket, event_ID} = req.body 
+    let {name_on_ticket, event_ID} = req.body 
 
     // show info about request in logs 
     console.log('--Request Body Info--')

@@ -5,18 +5,13 @@ import { Carousel } from "react-responsive-carousel";
 import QRCode from "qrcode.react";
 import "./Event.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import purpletrex from "../assets/purple-t-rex.png";
+import { Link } from "react-router-dom";
+import back from "../assets/back.png";
 
 const Event = () => {
   const [eventDetails, setEventDetails] = useState(null);
 
   let { id } = useParams();
-
-  // const logoSettings = {
-  //   src: purpletrex,
-  //   height: 64,
-  //   width: 64,
-  // };
 
   useEffect(() => {
     const grabEventInfo = async () => {
@@ -28,7 +23,12 @@ const Event = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="event-page">
+      <div className="back-holder">
+        <Link className="back-button" to="/events">
+          <img src={back} alt="back" />
+        </Link>
+      </div>
       {eventDetails ? (
         eventDetails.ticket_IDs.length > 0 ? (
           <Carousel showThumbs={false} infiniteLoop={false}>
@@ -59,6 +59,18 @@ const Event = () => {
         ) : (
           ""
         )
+      ) : (
+        ""
+      )}
+      {eventDetails ? (
+        <div className="event-details">
+          <h3>{eventDetails.event_name}</h3>
+          <p>{eventDetails.event_startTime}</p>
+          <h4>Location</h4>
+          <p>{eventDetails.event_location}</p>
+          <h4>Event Description</h4>
+          <p>{eventDetails.event_description}</p>
+        </div>
       ) : (
         ""
       )}

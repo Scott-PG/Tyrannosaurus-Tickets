@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { signIn } from "../services/user";
+import "./SignUpSignIn.css";
 
 class SignIn extends Component {
   constructor() {
@@ -21,6 +22,11 @@ class SignIn extends Component {
     });
   };
 
+  setSignInToggleFalse = () => {
+    const { signInToggleFalse } = this.props;
+    signInToggleFalse();
+  };
+
   onSignIn = (event) => {
     event.preventDefault();
 
@@ -31,7 +37,6 @@ class SignIn extends Component {
         console.log(res.user);
         setUser(res.user);
       })
-      // .then(() => history.push("/"))
       .catch((error) => {
         console.error(error);
         this.setState({
@@ -47,13 +52,13 @@ class SignIn extends Component {
     const toggleForm = this.state.isError ? "danger" : "";
     if (this.state.isError) {
       return (
-        <button type="submit" className={toggleForm}>
+        <button type="submit" className={`submit-button ${toggleForm}`}>
           {this.state.errorMsg}
         </button>
       );
     } else {
       return (
-        <button type="submit" className="button">
+        <button type="submit" className="submit-button">
           Sign In
         </button>
       );
@@ -66,7 +71,6 @@ class SignIn extends Component {
     return (
       <div className="form-container">
         <form className="sign-in-form" onSubmit={this.onSignIn}>
-          <h3>Sign In</h3>
           <label>Username</label>
           <input
             required
@@ -87,6 +91,12 @@ class SignIn extends Component {
           />
           {this.renderError()}
         </form>
+        <button
+          className="sign-switch-text"
+          onClick={this.setSignInToggleFalse}
+        >
+          Don't have an account? Sign Up
+        </button>
       </div>
     );
   }

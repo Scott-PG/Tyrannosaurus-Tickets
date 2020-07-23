@@ -25,7 +25,11 @@ const Main = ({ user, setUser }) => {
         />
         <Route exact path="/event/:id" render={() => <Event user={user} />} />
         <Route exact path="/events" render={() => <Events user={user} />} />
-        <Route exact path="/" render={() => <Home user={user} />} />
+        <Route
+          exact
+          path="/"
+          render={() => <Home user={user} setUser={setUser} />}
+        />
         <Route
           path="/ticketgeneration"
           render={() =>

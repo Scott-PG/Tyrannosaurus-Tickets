@@ -5,4 +5,8 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  background-image: url(./assets/flying-tickets.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }

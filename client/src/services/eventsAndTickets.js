@@ -32,3 +32,17 @@ export const getEvent = async (eventID) => {
     throw error;
   }
 };
+
+// using user id of current jwt, a specified event id, and desired nameOnTicket, generate a ticket and get the ticket's info back in response 
+export const generateTicket = async (event_ID, name_on_ticket) => {
+  try {
+    const resp = await api.post("/generateticket", {
+      event_ID,
+      name_on_ticket
+    });
+
+    return resp.data;
+  } catch (error) {
+    throw error;
+  }
+};

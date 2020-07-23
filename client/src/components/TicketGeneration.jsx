@@ -68,7 +68,7 @@ export default class TicketGeneration extends Component {
         <div>
         
           <label htmlFor="nameOnTicket"><h3>Name To Put On Ticket</h3></label>
-          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={this.handleChange} />
+          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} />
 
           {this.state.info ? <h1 style={{color: "red"}}>{this.state.info}</h1> : null}
 

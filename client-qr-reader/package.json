@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && cd build && cp index.html 200.html && echo trex-tickets-qr-reader.surge.sh > CNAME && surge && cd .."
   },
   "eslintConfig": {
     "extends": "react-app"

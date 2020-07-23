@@ -316,14 +316,9 @@ const generateTicket = async (req, res) => {
 
     // check if name_on_ticket is a valid string 
     if (!name_on_ticket) {
-      name_on_ticket = userInfo.user_real_name 
+      // name_on_ticket = userInfo.user_real_name 
+      name_on_ticket = 'test name'
     }
-
-    if (typeof name_on_ticket !== "string" || name_on_ticket.length < 1) {
-      name_on_ticket = userInfo.user_real_name 
-    }
-
-    name_on_ticket = 'test name'
 
     // show the final name_on_ticket before creating ticket
     console.log('--Final Name Of Ticket--')

@@ -313,6 +313,7 @@ const generateTicket = async (req, res) => {
     console.log('--Request Body Info--')
     console.log(name_on_ticket)
     console.log(event_ID)
+    console.log('--Request Body Info Finish--')
 
     // check if name_on_ticket is a valid string 
     if (!name_on_ticket) {

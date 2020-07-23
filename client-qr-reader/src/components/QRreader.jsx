@@ -8,27 +8,9 @@ export default class QRreader extends Component {
   state = {
     qrCode: null,
     ticketObj: null,
-    apiURL: window.location.hostname === "localhost" ? "http://localhost:3000/api/decryptticket" : ""
+    apiURL: window.location.hostname === "localhost" ? "http://localhost:3000/api/decryptticket" : "https://tyrannosaurus-tickets.herokuapp.com/api"
   }
   
-  // for testing purposes, use code on componentDidMount instead of in onScan
-  // async componentDidMount() {
-  //   const qrTestCode = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWNrZXRfSUQiOiI1ZjE4OTg1MzA3NmEyNTBkNjY0N2M0NjAiLCJuYW1lX29uX3RpY2tldCI6IkJvYiBCb2JiZXJzb24iLCJ0aW1lX2dlbmVyYXRlZCI6IldlZCwgMjIgSnVsIDIwMjAgMTk6NDk6MzkgR01UIiwiaWF0IjoxNTk1NDQ3Mzc5fQ.qgDl7GBwQnAZDgd0SdLnfzMPd8anegFs7QyNdumFG6I'
-
-  //   console.log(this.state.apiURL)
-
-  //   // send the qr code via api to decrypt 
-  //   const response = await axios.post(this.state.apiURL, {
-  //     encrypted_qr_code: qrTestCode
-  //   })
-
-  //   console.log(response)
-
-  //   this.setState({
-  //     ticketObj: response.data
-  //   })
-  // }
-
   handleScan = async data => {
     // load the qr code into state 
     if (data) {

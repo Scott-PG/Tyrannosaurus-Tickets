@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { getEvent } from "../services/eventsAndTickets";
 import { Carousel } from "react-responsive-carousel";
 import QRCode from "qrcode.react";
+import "./Event.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import purpletrex from "../assets/purple-t-rex.png";
 
 const Event = () => {
@@ -31,7 +33,7 @@ const Event = () => {
         eventDetails.ticket_IDs.length > 0 ? (
           <Carousel showThumbs={false} infiniteLoop={false}>
             {eventDetails.ticket_IDs.map((ticket, val) => (
-              <div key={val} className="ticket-tiles">
+              <div key={val} className="ticket-tile">
                 <QRCode
                   value={ticket.ticket_ID.qr_code_encrypted}
                   size={256}

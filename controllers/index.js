@@ -319,6 +319,9 @@ const generateTicket = async (req, res) => {
       name_on_ticket = userInfo.user_real_name 
     }
 
+    console.log('--Final Name Of Ticket--')
+    console.log(name_on_ticket)
+
     // create random seating details for demo purposes
     const ticket_details = []
     ticket_details.push(`Seat: ${Math.ceil(Math.random() * 50)}-${letters[Math.round(Math.random()*(letters.length-1))]}`)

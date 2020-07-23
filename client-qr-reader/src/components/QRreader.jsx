@@ -6,17 +6,29 @@ import TicketInfo from './TicketInfo'
 
 export default class QRreader extends Component {
   state = {
-    qrCode: null,
     ticketObj: null,
-    apiURL: window.location.hostname === "localhost" ? "http://localhost:3000/api/decryptticket" : "https://tyrannosaurus-tickets.herokuapp.com/api"
+    canRead: true,
+    apiURL: window.location.hostname === "localhost" ? "http://localhost:3000/api/decryptticket" : "https://tyrannosaurus-tickets.herokuapp.com/api/decryptticket"
   }
   
+  delayNextRead = () => {
+    this.setState({
+      canRead: false
+    })
+
+    setTimeout(() => {
+      this.setState({
+        canRead: true 
+      })
+    },2000)
+  }
+
   handleScan = async data => {
     // load the qr code into state 
-    if (data) {
-      this.setState({
-        qrCode: data
-      })
+    if (data && this.state.canRead) {
+      this.delayNextRead()
+
+      console.log(data)
 
       // send the qr code via api to decrypt 
       const response = await axios.post(this.state.apiURL, {
@@ -44,7 +56,7 @@ export default class QRreader extends Component {
           onScan={this.handleScan}
           style={{ width: '50%' , minWidth: '400px' }}
         />
-        <p>{this.state.qrCode ? 'QR-Code Detected' : 'No QR-Code Detected' }</p>
+        <h3 style={{color: this.state.canRead ? "green" : "red"}}>QR Reader: {this.state.canRead ? 'Reading' : 'Paused'}</h3>
         
         <TicketInfo ticket={this.state.ticketObj} />
           

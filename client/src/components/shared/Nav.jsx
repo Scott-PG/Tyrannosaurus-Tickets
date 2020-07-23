@@ -1,7 +1,6 @@
 import React from "react";
 import "./Layout.css";
 import { useHistory, Link } from "react-router-dom";
-import logo from "../../assets/t-rex-logo.png";
 import { withRouter } from "react-router-dom";
 
 const Nav = ({ user, handleLogout, location }) => {

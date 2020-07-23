@@ -307,7 +307,7 @@ const generateTicket = async (req, res) => {
     }
 
     // get name and event_ID from req.body 
-    const {name_on_ticket, event_ID} = req.body 
+    linkTicket {name_on_ticket, event_ID} = req.body 
 
     // show info about request in logs 
     console.log('--Request Body Info--')
@@ -316,10 +316,9 @@ const generateTicket = async (req, res) => {
     console.log('--Request Body Info Finish--')
 
     // check if name_on_ticket is a valid string 
-    // if (!name_on_ticket) { 
-      // name_on_ticket = userInfo.user_real_name 
-      name_on_ticket = 'test name'
-    // } 
+    if (!name_on_ticket || typeof name_on_ticket !== 'string' || name_on_ticket === '') { 
+      name_on_ticket = userInfo.user_real_name 
+    } 
 
     // show the final name_on_ticket before creating ticket
     console.log('--Final Name Of Ticket--')

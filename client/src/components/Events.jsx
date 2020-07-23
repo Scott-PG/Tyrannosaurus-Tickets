@@ -18,7 +18,7 @@ const Events = ({ user }) => {
     <div>
       {events
         ? events.map((event, val) => (
-            <Link key={val} to={`/events/${event.event_data._id}`}>
+            <Link key={val} to={`/event/${event.event_data._id}`}>
               <div className="events-tiles">
                 <h2>{event.event_data.event_name}</h2>
                 <p>{event.event_data.event_startTime}</p>

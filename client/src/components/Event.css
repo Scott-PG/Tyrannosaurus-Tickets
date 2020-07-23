@@ -1,0 +1,9 @@
+.ticket-tile {
+  min-height: 320px;
+  padding-top: 10px;
+  background: #221f2d;
+}
+
+.ticket-tile p {
+  color: #ffffff;
+}

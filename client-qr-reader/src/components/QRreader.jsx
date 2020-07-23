@@ -42,7 +42,7 @@ export default class QRreader extends Component {
           delay={300}
           onError={this.handleError}
           onScan={this.handleScan}
-          style={{ width: '50%' }}
+          style={{ width: '50%' , minWidth: '400px' }}
         />
         <p>{this.state.qrCode ? 'QR-Code Detected' : 'No QR-Code Detected' }</p>
         

@@ -37,21 +37,27 @@ const main = async () => {
       event_location: '100 Event Street, New York NY 11111',
       event_startTime: 'July 20th, 2021, 10:00AM EST',
       event_description: 'Welcome to Eventapalooza! For those attending, please find the marked red kiosk and scan the QR code displayed on your phone (found in the tickets section) upon arrival!',
-      ticket_IDs: []
+      ticket_IDs: [],
+      event_instructions: 'Go to Entrace B - Located behind the stadium. There will be a giant yellow sign marking the start of the line.',
+      event_security: 'No backpacks, No waterbottles, No weapons of any kind'
     },
     {
       event_name: 'Metalpalooza 2021',
       event_location: '4 Pennsylvania Plaza, New York, NY 10001',
       event_startTime: 'July 20th, 2021, 7:00PM EST',
       event_description: 'Welcome to Metalpalooza! For those attending, please find the marked red kiosk and scan the QR code displayed on your phone (found in the tickets section) upon arrival!',
-      ticket_IDs: []
+      ticket_IDs: [],
+      event_instructions: 'Go to Entrace B - Located behind the stadium. There will be a giant yellow sign marking the start of the line.',
+      event_security: 'No backpacks, No waterbottles, No weapons of any kind'
     },
     {
       event_name: 'Valorant World Cup 2022',
       event_location: '620 Atlantic Ave, Brooklyn, NY 11217',
       event_startTime: 'September 15th, 2021, 4:00PM EST',
       event_description: 'Welcome, gamers! For those attending, please find the gate at the East Entrance and scan the QR code displayed on your phone (found in the tickets section).',
-      ticket_IDs: []
+      ticket_IDs: [],
+      event_instructions: 'Go to Entrace B - Located behind the stadium. There will be a giant yellow sign marking the start of the line.',
+      event_security: 'No backpacks, No waterbottles, No weapons of any kind'
     }
     ]
 

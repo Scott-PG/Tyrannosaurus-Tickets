@@ -94,7 +94,7 @@ const userOfRequest = (req) => {
     const legit = jwt.verify(token, TOKEN_KEY)
     
     if (legit) {
-      return legit.id 
+      return legit
     }
     return false 
   } catch (error) {
@@ -203,7 +203,7 @@ const getEvents = async (req, res) => {
 // get all events that have tickets of the user whose token is detected 
 const getUserEvents = async (req, res) => {
   try {
-    const user_ID = userOfRequest(req) 
+    const user_ID = userOfRequest(req).id
     if (user_ID) {
       // query events where user_ID is in the array ticket_IDs.user_ID 
       const foundEvents = await Event.find({
@@ -237,7 +237,7 @@ const getUserEvents = async (req, res) => {
 const getUserEvent = async (req, res) => {
   try {
     // get user id from token 
-    const user_ID = userOfRequest(req) 
+    const user_ID = userOfRequest(req).id
 
     // get event id from req.params 
     const event_ID = req.params.id 
@@ -299,14 +299,30 @@ const decryptTicket = async (req, res) => {
 const generateTicket = async (req, res) => {
   try {
     // get user id from token 
-    const user_ID = userOfRequest(req) 
+    const userInfo = userOfRequest(req)
+    const user_ID = userInfo.id 
 
     if (!user_ID) {
       return res.status(403).json({ error: "No valid JSON Web Token. Please log in first." })
     }
 
     // get name and event_ID from req.body 
-    const {name_on_ticket, event_ID} = req.body 
+    let {name_on_ticket, event_ID} = req.body 
+
+    // show info about request in logs 
+    console.log('--Request Body Info--')
+    console.log(name_on_ticket)
+    console.log(event_ID)
+    console.log('--Request Body Info Finish--')
+
+    // check if name_on_ticket is a valid string 
+    if (!name_on_ticket || typeof name_on_ticket !== 'string' || name_on_ticket === '') { 
+      name_on_ticket = userInfo.user_real_name 
+    } 
+
+    // show the final name_on_ticket before creating ticket
+    console.log('--Final Name Of Ticket--')
+    console.log(name_on_ticket)
 
     // create random seating details for demo purposes
     const ticket_details = []

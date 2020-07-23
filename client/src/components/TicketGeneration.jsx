@@ -18,9 +18,17 @@ export default class TicketGeneration extends Component {
     console.log(response)
     console.log(this.props.user)
 
+    let nameOnTicket = ''
+
+    try {
+      nameOnTicket = this.props.user.user_real_name
+    } catch (error) {
+      console.log(error)
+    }
+
     this.setState({
       events: response,
-      nameOnTicket: this.props.user.user_real_name 
+      nameOnTicket
     })
   }
 
@@ -32,6 +40,8 @@ export default class TicketGeneration extends Component {
 
   handleClickTicket = async (eventID) => {
     try {
+      console.log('--Starting Ticket Generation--')
+
       const response = await generateTicket(eventID, this.state.nameOnTicket)
 
       console.log(response)

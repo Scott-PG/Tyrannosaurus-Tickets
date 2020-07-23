@@ -54,7 +54,7 @@ export default class QRreader extends Component {
           delay={300}
           onError={this.handleError}
           onScan={this.handleScan}
-          style={{ width: '50%' , minWidth: '400px' }}
+          style={{ width: '500px' }}
         />
         <h3 style={{color: this.state.canRead ? "green" : "red"}}>QR Reader: {this.state.canRead ? 'Reading' : 'Paused'}</h3>
         

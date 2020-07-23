@@ -1,9 +1,59 @@
+.event-page {
+  padding: 10px 0;
+  background: #221f2d;
+}
+
+.back-holder {
+  width: 100%;
+  display: flex;
+}
+
+.back-button {
+  height: 36px;
+  margin-left: 15px;
+}
+
 .ticket-tile {
-  min-height: 320px;
-  padding-top: 10px;
+  min-height: 340px;
   background: #221f2d;
 }
 
 .ticket-tile p {
   color: #ffffff;
+}
+
+.ticket-details {
+  margin: 0 auto 4px;
+  width: 256px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.event-details {
+  border-top: 3px dashed #9e45bc;
+  background: #221f2d;
+  color: #ffffff;
+  width: 100vw;
+  text-align: left;
+}
+
+.event-details h3,
+.event-details h4,
+.event-details p {
+  margin: 0 15px;
+}
+
+.event-details h3 {
+  font-size: 36px;
+  margin-top: 28px;
+}
+
+.event-details h4 {
+  font-size: 24px;
+  margin-top: 32px;
+}
+
+.event-details p {
+  font-size: 18px;
+  margin-top: 15px;
 }

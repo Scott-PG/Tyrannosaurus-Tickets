@@ -319,6 +319,7 @@ const generateTicket = async (req, res) => {
       name_on_ticket = userInfo.user_real_name 
     }
 
+    // show the final name_on_ticket before creating ticket
     console.log('--Final Name Of Ticket--')
     console.log(name_on_ticket)
 

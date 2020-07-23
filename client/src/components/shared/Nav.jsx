@@ -1,7 +1,6 @@
 import React from "react";
 import "./Layout.css";
-import { useHistory, Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 const Nav = ({ user, handleLogout, location }) => {
   const history = useHistory();
@@ -17,7 +16,7 @@ const Nav = ({ user, handleLogout, location }) => {
     onEventPage = true;
   }
 
-  const authenticatedOptions = (
+  const logoutButton = (
     <>
       {onEventPage ? null : (
         <button
@@ -33,17 +32,9 @@ const Nav = ({ user, handleLogout, location }) => {
     </>
   );
 
-  const unauthenticatedOptions = (
-    <>
-      <Link to="/signin">
-        <button className="nav-link-button">Sign-In</button>
-      </Link>
-    </>
-  );
-
   return (
     <header>
-      <nav>{user ? authenticatedOptions : unauthenticatedOptions}</nav>
+      <nav>{user ? logoutButton : ""}</nav>
     </header>
   );
 };

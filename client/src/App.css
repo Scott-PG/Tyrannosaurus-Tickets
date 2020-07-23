@@ -5,5 +5,9 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  background-image: url(./assets/flying-tickets.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -34,6 +34,17 @@ const Event = () => {
           <Carousel showThumbs={false} infiniteLoop={false}>
             {eventDetails.ticket_IDs.map((ticket, val) => (
               <div key={val} className="ticket-tile">
+                {ticket.ticket_ID.ticket_details.length > 0 ? (
+                  <div className="ticket-details">
+                    {ticket.ticket_ID.ticket_details.map((detail, val) => (
+                      <p className="ticket-detail" key={val}>
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  ""
+                )}
                 <QRCode
                   value={ticket.ticket_ID.qr_code_encrypted}
                   size={256}

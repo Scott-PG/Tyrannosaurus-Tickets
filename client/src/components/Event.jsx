@@ -70,6 +70,10 @@ const Event = () => {
           <p>{eventDetails.event_location}</p>
           <h4>Event Description</h4>
           <p>{eventDetails.event_description}</p>
+          <h4>Instructions</h4>
+          <p>{eventDetails.event_instructions}</p>
+          <h4>Security</h4>
+          <p>{eventDetails.event_security}</p>
         </div>
       ) : (
         ""

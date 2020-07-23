@@ -1,18 +1,24 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const User = new Schema({
-  username: {
+const Event = new Schema({
+  event_name: {
     type: String,
     required: true,
     unique: true 
   },
-  user_real_name: {
+  event_location: {
     type: String,
-    required: true,
-    unique: true 
+    required: true 
   },
-  password_digest: { type: String, required: true },
+  event_startTime: {
+    type: String,
+    required: true 
+  },
+  event_description: {
+    type: String,
+    required: true 
+  },
   ticket_IDs: [{
     ticket_ID: {
       type: Schema.Types.ObjectId,
@@ -28,4 +34,4 @@ const User = new Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model("users", User)
+module.exports = mongoose.model("events", Event)

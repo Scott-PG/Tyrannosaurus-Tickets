@@ -28,7 +28,15 @@ const Event = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'users'
     }
-  }]
+  }],
+  event_instructions: {
+    type: String,
+    required: true 
+  },
+  event_security: {
+    type: String,
+    required: true 
+  }
 },
 {
   timestamps: true

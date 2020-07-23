@@ -31,13 +31,29 @@ const main = async () => {
     console.log('Seeded initial users')
 
     // seed at least one event 
-    const events = [{
+    const events = [
+    {
       event_name: 'Eventapalooza',
-      event_location: '100 Event Street, New York NY 99999',
-      event_startTime: 'July 20th, 3000, 10:00 UTC',
+      event_location: '100 Event Street, New York NY 11111',
+      event_startTime: 'July 20th, 2021, 10:00AM EST',
       event_description: 'Welcome to Eventapalooza! For those attending, please find the marked red kiosk and scan the QR code displayed on your phone (found in the tickets section) upon arrival!',
       ticket_IDs: []
-    }]
+    },
+    {
+      event_name: 'Metalpalooza 2021',
+      event_location: '4 Pennsylvania Plaza, New York, NY 10001',
+      event_startTime: 'July 20th, 2021, 7:00PM EST',
+      event_description: 'Welcome to Metalpalooza! For those attending, please find the marked red kiosk and scan the QR code displayed on your phone (found in the tickets section) upon arrival!',
+      ticket_IDs: []
+    },
+    {
+      event_name: 'Valorant World Cup 2022',
+      event_location: '620 Atlantic Ave, Brooklyn, NY 11217',
+      event_startTime: 'September 15th, 2021, 4:00PM EST',
+      event_description: 'Welcome, gamers! For those attending, please find the gate at the East Entrance and scan the QR code displayed on your phone (found in the tickets section).',
+      ticket_IDs: []
+    }
+    ]
 
     await Event.insertMany(events) 
     console.log('Seeded initial events')

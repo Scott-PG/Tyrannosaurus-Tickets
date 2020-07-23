@@ -64,8 +64,9 @@ const decryptTicketQR = async (qr_string) => {
 // given the ticket_ID and its corresponding userID and eventID, link this ticket in the ticket_IDs field of the corresponding user and event 
 const linkTicket = async (ticket_ID, user_ID, event_ID) => {
   try {
-    // console.log(user_ID)
-    // console.log(event_ID)
+    console.log('---Linking Ticket To User And Event---')
+    console.log(user_ID)
+    console.log(event_ID)
     
     const user = await User.findById(user_ID)
     const event = await Event.findById(event_ID)
@@ -79,8 +80,10 @@ const linkTicket = async (ticket_ID, user_ID, event_ID) => {
     event.ticket_IDs.push({ ticket_ID, user_ID })
     await event.save()
 
+    return true 
   } catch (error) {
     console.log(error)
+    return false 
   }
 }
 
@@ -328,10 +331,17 @@ const generateTicket = async (req, res) => {
     await ticket.save()
 
     // link this ticket to user and event 
-    await linkTicket(ticket._id, user_ID, event_ID)
+    // linkTicket returns true if successful and false if error thrown 
+    const tryLink = await linkTicket(ticket._id, user_ID, event_ID)
 
-    // respond with ticket to confirm 
+    if (tryLink) {
+      // respond with ticket to confirm 
     return res.json(ticket)
+    } else {
+      // respond with error message 
+      return res.status(404).json({ error: "Invalid user or event detected." })
+    }
+    
 
   } catch (error) {
     return res.status(500).json({ error: error.message })

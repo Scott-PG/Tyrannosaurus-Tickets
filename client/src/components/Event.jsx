@@ -8,6 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 import back from "../assets/back.png";
 import CovidModal from "./CovidModal";
+import covid from "../assets/COVID-CTA.png";
 
 const Event = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -71,8 +72,12 @@ const Event = () => {
       {eventDetails ? (
         <div className="event-details">
           {/* COVID 19 information button  */}
-          <button onClick={() => setShowModal(true)}>COVID 19 Info</button>
-          <h3>{eventDetails.event_name}</h3>
+          <div className="title-covid">
+            <h3>{eventDetails.event_name}</h3>
+            <button className="covid-info" onClick={() => setShowModal(true)}>
+              <img src={covid} alt="COVID info" />
+            </button>
+          </div>
           <p>{eventDetails.event_startTime}</p>
           <h4>Location</h4>
           <p>{eventDetails.event_location}</p>

@@ -7,7 +7,7 @@ import "./Event.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 import back from "../assets/back.png";
-import CovidModal from "./CovidModal"
+import CovidModal from "./CovidModal";
 
 const Event = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -18,15 +18,14 @@ const Event = () => {
   useEffect(() => {
     const grabEventInfo = async () => {
       const resp = await getEvent(id);
-      console.log(resp);
       setEventDetails(resp);
     };
     grabEventInfo();
   }, [id]);
 
   const handleClose = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
 
   return (
     <div className="event-page">
@@ -67,12 +66,12 @@ const Event = () => {
         )
       ) : (
         ""
-        )}
-      
+      )}
+
       {eventDetails ? (
         <div className="event-details">
-        {/* COVID 19 information button  */}
-        <button onClick={() => setShowModal(true)}>COVID 19 Info</button>
+          {/* COVID 19 information button  */}
+          <button onClick={() => setShowModal(true)}>COVID 19 Info</button>
           <h3>{eventDetails.event_name}</h3>
           <p>{eventDetails.event_startTime}</p>
           <h4>Location</h4>
@@ -86,8 +85,8 @@ const Event = () => {
         </div>
       ) : (
         ""
-        )}
-      
+      )}
+
       {/* COVID 10 Modal which can be shown or hidden  */}
       <CovidModal show={showModal} handleClose={handleClose} />
     </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { allEvents, generateTicket } from '../services/eventsAndTickets'
+import './Events.css'
 
 export default class TicketGeneration extends Component {
   constructor(props) {
@@ -75,24 +76,28 @@ export default class TicketGeneration extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="events-page">
         
-          <label htmlFor="nameOnTicket"><h3>Name To Put On Ticket</h3></label>
-          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} />
+          <label htmlFor="nameOnTicket"><h3 className="events-text">Name To Put On Ticket</h3></label>
+          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} style={{display: "block", margin: "0 auto"}} />
 
           {this.state.info ? <h1 style={{color: "red"}}>{this.state.info}</h1> : null}
 
-          {
-            this.state.events.map((event, ind) => {
-              return (
-                <div style={{ border: "1px solid black", margin: "30px", padding: "20px 0" }} key={ind}
-                onClick={() => this.handleClickTicket(event._id)}
-                >
-                  <h1>Buy a ticket for: {event.event_name}</h1>
-                </div>
-              )
-            })
-          }
+          <div className="events-holder">
+            {
+              this.state.events.map((event, ind) => {
+                return (
+                  <div className="events-tiles" style={{ width: "80%" }} key={ind}
+                  onClick={() => this.handleClickTicket(event._id)}
+                  >
+                    <div className="events-info">
+                      <p className="events-text">Buy a ticket for: {event.event_name}</p>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
 
         </div>
       )

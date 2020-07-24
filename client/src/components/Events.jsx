@@ -42,7 +42,7 @@ const Events = ({ user }) => {
                 
                 <div className="events-time">
                   <p className="events-text">{`${eventTime[0]}, ${eventTime[1]}`}</p>
-                  <p className="events-text">{eventTime[2]}}</p>
+                  <p className="events-text">{eventTime[2]}</p>
                 </div>
               </div>
             </Link>

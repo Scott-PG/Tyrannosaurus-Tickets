@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { allEvents, generateTicket } from '../services/eventsAndTickets'
 import './Events.css'
+import { Link } from "react-router-dom";
+import back from "../assets/back.png";
 
 export default class TicketGeneration extends Component {
   constructor(props) {
@@ -78,6 +80,12 @@ export default class TicketGeneration extends Component {
       return (
         <div className="events-page">
         
+          <div className="back-holder">
+            <Link className="back-button" to="/events">
+              <img src={back} alt="back" />
+            </Link>
+          </div>
+          
           <label htmlFor="nameOnTicket"><h3 className="events-text">Name To Put On Ticket</h3></label>
           <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} style={{display: "block", margin: "0 auto"}} />
 

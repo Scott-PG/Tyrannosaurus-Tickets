@@ -35,7 +35,7 @@ const Home = ({ user, setUser }) => {
           <LoggedIn user={user} />
         )}
       </div>
-      {user ? <Footer /> : ""}
+      {user ? <Footer page="home" /> : ""}
     </>
   );
 };

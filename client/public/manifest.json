@@ -1,6 +1,6 @@
 {
-  "short_name": "Tyrannosaurus Tickets",
-  "name": "Tyrannosaurus Tickets",
+  "short_name": "T-Rex Tickets",
+  "name": "T-Rex Tickets",
   "icons": [
     {
       "src": "t-rex-logo.png",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#221F2C"
 }

@@ -34,7 +34,6 @@ class SignIn extends Component {
 
     signIn(this.state)
       .then((res) => {
-        console.log(res.user);
         setUser(res.user);
       })
       .catch((error) => {

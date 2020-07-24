@@ -52,3 +52,13 @@
 .upcoming-events-text {
   font-size: 16px;
 }
+
+.link-tickets {
+  color: white;
+  margin: 15px 0 20px 0;
+  text-decoration: underline;
+}
+
+.link-tickets:visited {
+  color: white;
+}

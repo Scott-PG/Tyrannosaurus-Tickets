@@ -46,6 +46,7 @@ const LoggedIn = ({ user }) => {
               );
             })
           : "Loading"}
+        <Link to="/ticketgeneration" className="link-tickets">Don't have tickets? Get some!</Link>
       </div>
     </div>
   );

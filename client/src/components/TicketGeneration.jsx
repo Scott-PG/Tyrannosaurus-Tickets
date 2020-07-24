@@ -3,6 +3,7 @@ import { allEvents, generateTicket } from '../services/eventsAndTickets'
 import './Events.css'
 import { Link } from "react-router-dom";
 import back from "../assets/back.png";
+import Footer from "./shared/Footer";
 
 export default class TicketGeneration extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export default class TicketGeneration extends Component {
       console.log(response)
 
       this.setState({
-        info: `Ticket bought with ticket id: ${response._id} `
+        info: `Ticket bought with ticket id: ${response._id}. Please hit the arrow button on top to see all events you have tickets for! `
       })
     } catch (error) {
       console.log(error)
@@ -86,10 +87,12 @@ export default class TicketGeneration extends Component {
             </Link>
           </div>
           
-          <label htmlFor="nameOnTicket"><h3 className="events-text">Name To Put On Ticket</h3></label>
-          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} style={{display: "block", margin: "0 auto"}} />
+          <h3 style={{marginTop: "44px"}}>Get Tickets!</h3>
 
-          {this.state.info ? <h1 style={{color: "red", textShadow: "0 0 5px white", fontSize: "20px", marginTop: "15px"}}>{this.state.info}</h1> : null}
+          <label htmlFor="nameOnTicket"><h3 className="events-text">Name To Put On Ticket</h3></label>
+          <input name="nameOnTicket" value={this.state.nameOnTicket} onChange={(e) => this.handleChange(e, 'nameOnTicket')} style={{display: "block", margin: "0 auto 10px auto"}} />
+
+          {this.state.info ? <h1 style={{color: "red", textShadow: "0 0 5px white", fontSize: "16px", margin: "15px"}}>{this.state.info}</h1> : null}
 
           <div className="events-holder">
             {
@@ -107,6 +110,7 @@ export default class TicketGeneration extends Component {
             }
           </div>
 
+          <Footer page="wallet" />
         </div>
       )
     }

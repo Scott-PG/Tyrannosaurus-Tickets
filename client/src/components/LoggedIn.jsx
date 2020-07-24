@@ -36,9 +36,6 @@ const LoggedIn = ({ user }) => {
                       <p className="upcoming-events-text">
                         {eventInfo.event_location}
                       </p>
-                      {/* <p className="events-text">{`${event.user_ticket_count} ${
-                        event.user_ticket_count === 1 ? "Ticket" : "Tickets"
-                      }`}</p> */}
                     </div>
                     <div className="upcoming-events-time">
                       <p className="upcoming-events-text">{`${eventTime[0]}, ${eventTime[1]}`}</p>

@@ -6,6 +6,8 @@
 
 [Mobile App](https://t-rex-tickets.netlify.com)
 
+[QR Scanner App](https://https://trex-tickets-qr-reader.surge.sh/)
+
 ## Team Members
 
 Andrew Hsu: Back-End Developer [site](https://drewhsu86.com/)
@@ -79,16 +81,26 @@ Tickets are stored in a wallet and all viewable information is based on JavaScri
 
 #### Packages Used on Front-End
 
-qrcode.react
+- qrcode.react
 
-axios
+- axios
 
-bootstrap
+- bootstrap
 
-react-responsive-carousel
+- react-responsive-carousel
 
-react-router-dom
+- react-router-dom
 
 #### React Component Structure
 
 ![React Component Diagram](/readme/T-Rex-Tickets-React.png)
+
+### Frontend (QR-reader) Summary 
+
+In the client-qr-reader folder, a separate React app is made for the sole purpose of reading QR codes, and sending the decoded string to the backend through the route '/api/decryptticket'. As it only has a single component as a child of App.js, no component tree is needed.
+
+#### Packages Used on QR-reader 
+
+- axios 
+
+- react-qr-reader

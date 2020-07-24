@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { signUp, signIn } from "../services/user";
+import "./SignUpSignIn.css";
 
 class SignUp extends Component {
   constructor() {
@@ -43,17 +44,22 @@ class SignUp extends Component {
       });
   };
 
+  setSignInToggleTrue = () => {
+    const { signInToggleTrue } = this.props;
+    signInToggleTrue();
+  };
+
   renderError = () => {
     const toggleForm = this.state.isError ? "danger" : "";
     if (this.state.isError) {
       return (
-        <button type="submit" className={toggleForm}>
+        <button type="submit" className={`submit-button ${toggleForm}`}>
           {this.state.errorMsg}
         </button>
       );
     } else {
       return (
-        <button className="button" type="submit">
+        <button className="submit-button" type="submit">
           Sign Up
         </button>
       );
@@ -70,47 +76,48 @@ class SignUp extends Component {
 
     return (
       <div className="form-container">
-        <div className="form-user-info">
-          <form onSubmit={this.onSignUp}>
-            <label>Username</label>
-            <input
-              required
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Username"
-              onChange={this.handleChange}
-            />
-            <label>Given Name</label>
-            <input
-              required
-              type="text"
-              name="user_real_name"
-              value={user_real_name}
-              placeholder="Given Name"
-              onChange={this.handleChange}
-            />
-            <label>Password</label>
-            <input
-              required
-              name="password"
-              value={password}
-              type="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-            />
-            <label>Password Confirmation</label>
-            <input
-              required
-              name="passwordConfirmation"
-              value={passwordConfirmation}
-              type="password"
-              placeholder="Confirm Password"
-              onChange={this.handleChange}
-            />
-            {this.renderError()}
-          </form>
-        </div>
+        <form className="sign-in-form" onSubmit={this.onSignUp}>
+          <label>Username</label>
+          <input
+            required
+            type="text"
+            name="username"
+            value={username}
+            placeholder="Username"
+            onChange={this.handleChange}
+          />
+          <label>Full Name</label>
+          <input
+            required
+            type="text"
+            name="user_real_name"
+            value={user_real_name}
+            placeholder="Full Name"
+            onChange={this.handleChange}
+          />
+          <label>Password</label>
+          <input
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <label>Confirm Password</label>
+          <input
+            required
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            type="password"
+            placeholder="Confirm Password"
+            onChange={this.handleChange}
+          />
+          {this.renderError()}
+        </form>
+        <button className="sign-switch-text" onClick={this.setSignInToggleTrue}>
+          Have an account? Sign-In
+        </button>
       </div>
     );
   }

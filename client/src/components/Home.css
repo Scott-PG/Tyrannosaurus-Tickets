@@ -1,0 +1,21 @@
+.home-logo-div {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.t-rex-logo {
+  margin-top: 20px;
+  width: 34vw;
+}
+
+@media (max-height: 650px) {
+  .home-logo-div {
+    margin-top: 70px;
+    margin-bottom: 25px;
+  }
+}

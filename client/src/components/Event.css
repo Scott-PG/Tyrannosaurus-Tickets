@@ -1,6 +1,8 @@
 .event-page {
   padding: 10px 0;
   background: #221f2d;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .back-holder {
@@ -14,12 +16,13 @@
 }
 
 .ticket-tile {
-  min-height: 340px;
+  min-height: 380px;
   background: #221f2d;
 }
 
 .ticket-tile p {
   color: #ffffff;
+  font-size: 20px;
 }
 
 .ticket-details {

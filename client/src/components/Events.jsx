@@ -39,7 +39,6 @@ const Events = ({ user }) => {
                         event.user_ticket_count === 1 ? "Ticket" : "Tickets"
                       }`}</p>
                     </div>
-
                     <div className="events-time">
                       <p className="events-text">{`${eventTime[0]}, ${eventTime[1]}`}</p>
                       <p className="events-text">{eventTime[2]}</p>
@@ -49,6 +48,7 @@ const Events = ({ user }) => {
               );
             })
           : "Loading"}
+
       </div>
     </div>
   );

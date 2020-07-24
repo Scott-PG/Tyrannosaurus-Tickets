@@ -25,7 +25,7 @@
   width: 100%;
   display: flex;
   text-align: left;
-  margin-top: 44px;
+  margin-top: 27px;
 }
 
 .back-button {
@@ -47,9 +47,9 @@
 
 .events-tiles {
   background-color: black;
-  border: 5px solid #9E45BC;
+  border: 5px solid #9e45bc;
   border-radius: 15px;
-  box-shadow: 0 0 10px #9E45BC;
+  box-shadow: 0 0 10px #9e45bc;
   display: flex;
   margin: 10px 25px 15px 25px;
 }
@@ -75,3 +75,11 @@
   font-size: 16px;
 }
 
+@media (max-height: 650px) {
+  header {
+    height: 40px;
+  }
+  .back-holder {
+    margin-top: 5px;
+  }
+}

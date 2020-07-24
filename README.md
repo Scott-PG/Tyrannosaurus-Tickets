@@ -10,6 +10,10 @@ The reason Express is used instead of a framework such as Ruby on Rails is that,
 
 Following a similar train of thought, Mongodb was chosen as the database so that flexible Schemas can be developed for the prototype quickly. A relational database could've been used, but join tables would have been required instead of arrays. Depending on the expected scale of a final product, relational databases could've been considered as well.
 
+### Entity Relationship Diagram (ERD)
+
+![ERD Diagram](/readme/ERD1.png)
+
 ### Routes 
 
 * Note: A minimum number of routes were developed to demo this app. A more full implementation of this app would likely feature full CRUD for Events and Tickets.

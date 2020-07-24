@@ -20,7 +20,7 @@ const Nav = ({ user, handleLogout, location }) => {
     <>
       {onEventPage ? null : (
         <button
-          className="nav-link-button"
+          className="logout-button"
           onClick={() => {
             handleLogout();
             history.push("/");

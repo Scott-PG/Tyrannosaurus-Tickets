@@ -8,7 +8,7 @@ const Nav = ({ user, handleLogout, location }) => {
   // we want to not show the logout button if the path is
   // /event/:id
   // so empty string before /event/ and nonempty string after
-  const eventSandwich = location.pathname.split("/event");
+  const eventSandwich = location.pathname.split("/events/");
 
   let onEventPage = false;
 

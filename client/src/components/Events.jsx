@@ -3,6 +3,7 @@ import { userEvents } from "../services/eventsAndTickets";
 import { Link } from "react-router-dom";
 import "./Events.css";
 import back from "../assets/back.png";
+import Footer from "./shared/Footer";
 
 const Events = ({ user }) => {
   const [events, setEvents] = useState(null);
@@ -48,8 +49,8 @@ const Events = ({ user }) => {
               );
             })
           : "Loading"}
-
       </div>
+      <Footer page="wallet" />
     </div>
   );
 };

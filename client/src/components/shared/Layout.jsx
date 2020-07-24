@@ -4,7 +4,6 @@ import { verifyUser, signOut } from "../../services/user";
 
 import Nav from "./Nav";
 import Main from "../Main";
-import Footer from "./Footer";
 
 const Layout = () => {
   const [user, setUser] = useState(verifyUser());
@@ -26,7 +25,6 @@ const Layout = () => {
     <>
       <Nav user={user} handleLogout={handleLogout} />
       <Main user={user} setUser={setUser} />
-      <Footer />
     </>
   );
 };

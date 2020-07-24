@@ -1,0 +1,54 @@
+.welcome {
+  display: flex;
+  padding: 0 26px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0 20px 20px 0;
+  max-width: 67vw;
+  color: white;
+}
+
+.upcoming-events-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 70px;
+  width: 100vw;
+}
+
+.upcoming-events-header {
+  font-size: 24px;
+  margin-top: 30px;
+  color: white;
+}
+
+.upcoming-events-tiles {
+  background-color: white;
+  color: #1a1717;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ede1ff 100%),
+    #ffffff;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  display: flex;
+  margin: 10px 25px 15px 25px;
+}
+
+.upcoming-events-info {
+  margin: 15px;
+  width: 50%;
+  text-align: left;
+}
+
+.upcoming-events-time {
+  margin: 10px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.upcoming-events-name {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.upcoming-events-text {
+  font-size: 16px;
+}

@@ -19,6 +19,17 @@ nav {
   pointer-events: visible;
 }
 
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 70px;
+  width: 100%;
+  background: #000000;
+  box-shadow: inset 0px 0.5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 0 0;
+}
+
 .logout-button {
   border: 0;
   background: none;

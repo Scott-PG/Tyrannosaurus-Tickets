@@ -32,6 +32,22 @@
   justify-content: space-evenly;
 }
 
+.title-covid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.covid-info {
+  margin-top: 25px;
+  margin-right: 15px;
+  background: 0;
+  width: 52px;
+  height: 41px;
+  border: none;
+}
+
 .event-details {
   border-top: 3px dashed #9e45bc;
   background: #221f2d;
@@ -40,7 +56,10 @@
   text-align: left;
 }
 
-.event-details h3,
+.event-details h3 {
+  margin-left: 15px;
+}
+
 .event-details h4,
 .event-details p {
   margin: 0 15px;
@@ -59,4 +78,10 @@
 .event-details p {
   font-size: 18px;
   margin-top: 15px;
+}
+
+@media (max-width: 370px) {
+  .event-details h3 {
+    font-size: 32px;
+  }
 }

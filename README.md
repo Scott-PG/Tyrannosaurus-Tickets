@@ -4,7 +4,7 @@
 
 ## Deployed App
 
-[Mobile App](https://t-rex-tickets.netlify.com)
+[Mobile App](https://t-rex-tickets.netlify.com) - (Demo Account > username: user1, password: 123456)
 
 [QR Scanner App](https://https://trex-tickets-qr-reader.surge.sh/)
 
@@ -19,6 +19,13 @@ Leah Mirani: UX Designer [site](https://www.leahmiranidesign.com/)
 Peter Hsiao: UX Designer [site](https://www.peterhsiao.me/)
 
 Scott Griffith: Front-End Developer [site](https://scottgriffith.dev/)
+## Overview
+
+### Overall Summary
+
+T-Rex Tickets was built from the prompt "How do you design a contactless ticket app that can keep people safe in a pandemic?"
+
+We built T-Rex Tickets as a full-stack system, with a server to contain event and ticket data, a user app to recall event and ticket data for events that you have tickets to, and a personnel app that can scan and decrypt tickets in an event setting.  We designed this to be platform agnostic, especially for the reader app; one thing the pandemic has taught us is a need for flexibility.  The reader app can be placed in a socially distanced webcam, allowing attendants to keep a safe distance in a socially distanced setting.  We also focused on mobile-first architecture as a ticket-storage app has the most use on mobile devices.
 
 ## Backend
 
@@ -75,7 +82,7 @@ Following a similar train of thought, Mongodb was chosen as the database so that
 
 ### Frontend Summary
 
-The Frontend App is designed to pull data from the backend and present it in a user-friendly way. In addition, options are locked based on the logged-in status of the user. In addition, QR codes are generated from encrypted strings on the front-end, saving network bandwidth.
+The Frontend App is designed to pull ticket and event data from the backend and present it in a user-friendly way. In addition, options are locked based on the logged-in status of the user. QR codes are generated from encrypted strings on the front-end, saving network bandwidth in a data-congested setting.
 
 Tickets are stored in a wallet and all viewable information is based on JavaScript Web Tokens, making it impossible to see data that doesn't pertain to you.
 

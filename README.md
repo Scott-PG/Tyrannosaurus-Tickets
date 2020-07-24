@@ -6,7 +6,7 @@
 
 [Mobile App](https://t-rex-tickets.netlify.com) - (Demo Account > username: __user1__, password: __123456__)
 
-[QR Scanner App](https://https://trex-tickets-qr-reader.surge.sh/)
+[QR Scanner App](https://trex-tickets-qr-reader.surge.sh/)
 
 ## Team Members
 

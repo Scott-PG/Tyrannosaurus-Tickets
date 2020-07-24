@@ -1,11 +1,11 @@
 header {
-  height: 50px;
+  height: 60px;
   width: 100%;
   position: fixed;
   top: 0px;
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  align-items: flex-end;
   justify-content: right;
   pointer-events: none;
 }
@@ -19,7 +19,19 @@ nav {
   pointer-events: visible;
 }
 
-.logo {
-  width: 110px;
-  margin: 0 25px;
+.logout-button {
+  border: 0;
+  background: none;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.24px;
+  color: #ffffff;
+}
+
+@media (max-height: 650px) {
+  header {
+    height: 40px;
+  }
 }
